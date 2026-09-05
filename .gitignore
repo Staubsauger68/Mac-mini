@@ -1,0 +1,15 @@
+# Geheime Zugangsdaten - niemals einchecken
+.env
+*/.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*/.venv/
+
+# Whisper-Modell-Cache (wird beim ersten Start automatisch heruntergeladen)
+models/
+*/models/
+
+.DS_Store

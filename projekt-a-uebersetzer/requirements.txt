@@ -1,0 +1,6 @@
+faster-whisper>=1.0.0
+sounddevice>=0.4.6
+webrtcvad>=2.0.10
+numpy>=1.24
+deepl>=1.18.0
+python-dotenv>=1.0.0
