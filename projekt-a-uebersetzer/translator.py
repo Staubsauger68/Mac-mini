@@ -37,7 +37,8 @@ class TranslatorApp:
     def __init__(self, root: tk.Tk):
         self.root = root
         self.root.title("Whisper Echtzeit-Uebersetzer")
-        self.root.geometry("1100x700")
+        self.root.geometry("1100x900")
+        self.root.minsize(700, 700)
 
         self.second_lang: str | None = None
         self._ui_queue: "queue.Queue[tuple]" = queue.Queue()
@@ -88,14 +89,14 @@ class TranslatorApp:
         de_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 5))
         tk.Label(de_frame, text="Deutsche Sprache + Übersetzung der zweiten Sprache ins Deutsche",
                  font=caption_font, bg="white", fg="#666666").pack(anchor="w")
-        self.de_text = tk.Text(de_frame, font=big_font, wrap=tk.WORD, height=8, bg="white", fg="black")
+        self.de_text = tk.Text(de_frame, font=big_font, wrap=tk.WORD, height=6, bg="white", fg="black")
         self.de_text.pack(fill=tk.BOTH, expand=True)
 
         other_frame = tk.LabelFrame(self.root, text="Zweite Sprache (automatisch erkannt)", font=("Helvetica", 14), bg="white")
         other_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
         tk.Label(other_frame, text="Original in der zweiten Sprache",
                  font=caption_font, bg="white", fg="#666666").pack(anchor="w")
-        self.other_original_text = tk.Text(other_frame, font=big_font, wrap=tk.WORD, height=5, bg="white", fg="black")
+        self.other_original_text = tk.Text(other_frame, font=big_font, wrap=tk.WORD, height=4, bg="white", fg="black")
         self.other_original_text.pack(fill=tk.BOTH, expand=True)
         tk.Label(other_frame, text="Übersetzung des deutschen Textes in die zweite Sprache",
                  font=caption_font, bg="white", fg="#666666").pack(anchor="w")
