@@ -12,7 +12,8 @@ echo "==> Installiere Systemabhaengigkeiten (portaudio, python-tk, ffmpeg) ..."
 brew install portaudio python-tk@3.12 ffmpeg
 
 echo "==> Erstelle virtuelle Python-Umgebung (.venv) ..."
-python3 -m venv .venv
+PYTHON_BIN="$(brew --prefix python@3.12)/bin/python3.12"
+"$PYTHON_BIN" -m venv .venv
 source .venv/bin/activate
 
 echo "==> Installiere Python-Pakete ..."
