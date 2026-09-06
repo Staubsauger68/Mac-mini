@@ -82,15 +82,23 @@ class TranslatorApp:
         big_font = tkfont.Font(family="Helvetica", size=30, weight="bold")
         small_font = tkfont.Font(family="Helvetica", size=18)
 
+        caption_font = ("Helvetica", 11, "bold")
+
         de_frame = tk.LabelFrame(self.root, text="Deutsch", font=("Helvetica", 14), bg="white")
         de_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 5))
+        tk.Label(de_frame, text="Deutsche Sprache + Übersetzung der zweiten Sprache ins Deutsche",
+                 font=caption_font, bg="white", fg="#666666").pack(anchor="w")
         self.de_text = tk.Text(de_frame, font=big_font, wrap=tk.WORD, height=8, bg="white", fg="black")
         self.de_text.pack(fill=tk.BOTH, expand=True)
 
         other_frame = tk.LabelFrame(self.root, text="Zweite Sprache (automatisch erkannt)", font=("Helvetica", 14), bg="white")
         other_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
+        tk.Label(other_frame, text="Original in der zweiten Sprache",
+                 font=caption_font, bg="white", fg="#666666").pack(anchor="w")
         self.other_original_text = tk.Text(other_frame, font=big_font, wrap=tk.WORD, height=5, bg="white", fg="black")
         self.other_original_text.pack(fill=tk.BOTH, expand=True)
+        tk.Label(other_frame, text="Übersetzung des deutschen Textes in die zweite Sprache",
+                 font=caption_font, bg="white", fg="#666666").pack(anchor="w")
         self.other_translation_text = tk.Text(other_frame, font=small_font, wrap=tk.WORD, height=4, bg="white", fg="#444444")
         self.other_translation_text.pack(fill=tk.BOTH, expand=True)
 
@@ -128,11 +136,18 @@ class TranslatorApp:
             self.toggle_btn.config(text="Talk starten", bg="#2e7d32")
             self._status("Gestoppt.")
         else:
+            self._clear_texts()
             self._stop_event.clear()
             self.toggle_btn.config(text="Talk stoppen", bg="#c62828")
             self._status("Hoere zu ...")
             self._worker = threading.Thread(target=self._run_recognition_loop, daemon=True)
             self._worker.start()
+
+    def _clear_texts(self):
+        self.second_lang = None
+        self.de_text.delete("1.0", tk.END)
+        self.other_original_text.delete("1.0", tk.END)
+        self.other_translation_text.delete("1.0", tk.END)
 
     def _run_recognition_loop(self):
         device = os.environ.get("MIC_DEVICE_INDEX")
