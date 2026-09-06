@@ -62,7 +62,9 @@ class VoiceInputApp:
 
     # ---------------------------------------------------------------- UI
     def _build_ui(self):
-        top = tk.Frame(self.root)
+        self.root.configure(bg="white")
+
+        top = tk.Frame(self.root, bg="white")
         top.pack(fill=tk.X, padx=10, pady=8)
 
         self.toggle_btn = tk.Button(
@@ -71,17 +73,17 @@ class VoiceInputApp:
         )
         self.toggle_btn.pack(side=tk.LEFT)
 
-        self.status_label = tk.Label(top, text="", font=("Helvetica", 12), fg="#555")
+        self.status_label = tk.Label(top, text="", font=("Helvetica", 12), fg="#222222", bg="white")
         self.status_label.pack(side=tk.LEFT, padx=16)
 
-        input_frame = tk.LabelFrame(self.root, text="Deine Spracheingabe (Deutsch)", font=("Helvetica", 14))
+        input_frame = tk.LabelFrame(self.root, text="Deine Spracheingabe (Deutsch)", font=("Helvetica", 14), bg="white")
         input_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 5))
-        self.input_text = tk.Text(input_frame, font=("Helvetica", 20), wrap=tk.WORD, height=6)
+        self.input_text = tk.Text(input_frame, font=("Helvetica", 20), wrap=tk.WORD, height=6, bg="white", fg="black")
         self.input_text.pack(fill=tk.BOTH, expand=True)
 
-        output_frame = tk.LabelFrame(self.root, text="Antwort der KI", font=("Helvetica", 14))
+        output_frame = tk.LabelFrame(self.root, text="Antwort der KI", font=("Helvetica", 14), bg="white")
         output_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
-        self.output_text = tk.Text(output_frame, font=("Helvetica", 20), wrap=tk.WORD)
+        self.output_text = tk.Text(output_frame, font=("Helvetica", 20), wrap=tk.WORD, bg="white", fg="black")
         self.output_text.pack(fill=tk.BOTH, expand=True)
 
     def _status(self, text: str):

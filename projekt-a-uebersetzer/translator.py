@@ -65,7 +65,9 @@ class TranslatorApp:
 
     # ---------------------------------------------------------------- UI
     def _build_ui(self):
-        top = tk.Frame(self.root)
+        self.root.configure(bg="white")
+
+        top = tk.Frame(self.root, bg="white")
         top.pack(fill=tk.X, padx=10, pady=8)
 
         self.toggle_btn = tk.Button(
@@ -74,22 +76,22 @@ class TranslatorApp:
         )
         self.toggle_btn.pack(side=tk.LEFT)
 
-        self.status_label = tk.Label(top, text="", font=("Helvetica", 12), fg="#555")
+        self.status_label = tk.Label(top, text="", font=("Helvetica", 12), fg="#222222", bg="white")
         self.status_label.pack(side=tk.LEFT, padx=16)
 
         big_font = tkfont.Font(family="Helvetica", size=30, weight="bold")
         small_font = tkfont.Font(family="Helvetica", size=18)
 
-        de_frame = tk.LabelFrame(self.root, text="Deutsch", font=("Helvetica", 14))
+        de_frame = tk.LabelFrame(self.root, text="Deutsch", font=("Helvetica", 14), bg="white")
         de_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 5))
-        self.de_text = tk.Text(de_frame, font=big_font, wrap=tk.WORD, height=8)
+        self.de_text = tk.Text(de_frame, font=big_font, wrap=tk.WORD, height=8, bg="white", fg="black")
         self.de_text.pack(fill=tk.BOTH, expand=True)
 
-        other_frame = tk.LabelFrame(self.root, text="Zweite Sprache (automatisch erkannt)", font=("Helvetica", 14))
+        other_frame = tk.LabelFrame(self.root, text="Zweite Sprache (automatisch erkannt)", font=("Helvetica", 14), bg="white")
         other_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
-        self.other_original_text = tk.Text(other_frame, font=big_font, wrap=tk.WORD, height=5)
+        self.other_original_text = tk.Text(other_frame, font=big_font, wrap=tk.WORD, height=5, bg="white", fg="black")
         self.other_original_text.pack(fill=tk.BOTH, expand=True)
-        self.other_translation_text = tk.Text(other_frame, font=small_font, wrap=tk.WORD, height=4, fg="#444")
+        self.other_translation_text = tk.Text(other_frame, font=small_font, wrap=tk.WORD, height=4, bg="white", fg="#444444")
         self.other_translation_text.pack(fill=tk.BOTH, expand=True)
 
     def _status(self, text: str):
